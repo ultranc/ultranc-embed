@@ -1,0 +1,50 @@
+(UltraNC sample - 3 tool changes, nested features)
+(Cut depth Z-2.0, retract to Z10.0 for each tool change)
+(T1 D=3.0 - ZMIN=-2.0 - 3MM FLAT ENDMILL)
+(T2 D=6.0 - ZMIN=-2.0 - 6MM FLAT ENDMILL)
+(T3 D=2.0 - ZMIN=-2.0 - 2MM FLAT ENDMILL)
+G21 G90 G17 G94
+G54
+G0 Z10
+
+(--- T1 3.0mm: outer square 10..50 ---)
+T1 M6
+S14000 M3
+G0 X10 Y10
+G0 Z2
+G1 Z-2 F200
+G1 X50 Y10 F600
+G1 X50 Y50
+G1 X10 Y50
+G1 X10 Y10
+G0 Z10
+
+(--- T2 6.0mm: middle square 18..42 ---)
+T2 M6
+S12000 M3
+G0 X18 Y18
+G0 Z2
+G1 Z-2 F250
+G1 X42 Y18 F700
+G1 X42 Y42
+G1 X18 Y42
+G1 X18 Y18
+G0 Z10
+
+(--- T3 2.0mm: inner cross at centre ---)
+T3 M6
+S18000 M3
+G0 X30 Y22
+G0 Z2
+G1 Z-2 F150
+G1 X30 Y38 F500
+G0 Z10
+G0 X22 Y30
+G0 Z2
+G1 Z-2 F150
+G1 X38 Y30 F500
+G0 Z10
+
+M5
+G0 X0 Y0
+M30
